@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>com.honvoh.gmail-organizer</string>
+
+    <!--
+        TEMPLATE — à personnaliser par Claude Code lors de l'installation.
+
+        Remplace les placeholders suivants par les vrais chemins :
+          __PYTHON_PATH__  → résultat de `which python3`
+          __SCRIPT_DIR__   → chemin absolu du dossier qui contient organize_inbox.py
+          __SCRIPT_PATH__  → __SCRIPT_DIR__/organize_inbox.py
+          __LOG_PATH__     → __SCRIPT_DIR__/organize_inbox.log
+          __ERR_PATH__     → __SCRIPT_DIR__/organize_inbox_error.log
+
+        Sauvegarde ensuite ce fichier sans le .template
+        puis copie-le dans ~/Library/LaunchAgents/
+    -->
+
+    <key>ProgramArguments</key>
+    <array>
+        <string>__PYTHON_PATH__</string>
+        <string>__SCRIPT_PATH__</string>
+        <string>--max-emails</string>
+        <string>200</string>
+        <string>--apply</string>
+        <string>--verbose</string>
+    </array>
+
+    <key>WorkingDirectory</key>
+    <string>__SCRIPT_DIR__</string>
+
+    <!-- Exécution quotidienne à 17h00 heure locale -->
+    <key>StartCalendarInterval</key>
+    <dict>
+        <key>Hour</key>
+        <integer>17</integer>
+        <key>Minute</key>
+        <integer>0</integer>
+    </dict>
+
+    <key>StandardOutPath</key>
+    <string>__LOG_PATH__</string>
+    <key>StandardErrorPath</key>
+    <string>__ERR_PATH__</string>
+</dict>
+</plist>
