@@ -134,7 +134,7 @@ Ouvre `organize_inbox.py` et trouve la variable `CLASSIFICATION_SYSTEM_PROMPT` (
 Le prompt actuel est adapté à un consultant AI. Il faut le remplacer par le contexte de l'utilisateur. Remplace ce bloc :
 
 ```
-Tu es un assistant qui classe des emails pour Farel Vignon Honvoh, consultant AI basé en Turquie (farel@honvoh.com).
+Tu es un assistant qui classe des emails pour [PRÉNOM NOM], consultant AI basé à [VILLE] ([EMAIL]).
 
 Contexte business:
 - Il envoie des messages de prospection (cold outreach) à des créateurs YouTube en anglais
@@ -204,28 +204,28 @@ Selon le système de l'utilisateur :
 
 #### Sur macOS (launchd)
 
-1. Ouvre `com.honvoh.gmail-organizer.plist.template` et remplace les placeholders :
+1. Ouvre `com.gmail-organizer.plist.template` et remplace les placeholders :
    - `__PYTHON_PATH__` → résultat de `which python3`
    - `__SCRIPT_DIR__` → chemin absolu du dossier du projet
    - `__SCRIPT_PATH__` → chemin absolu vers `organize_inbox.py`
    - `__LOG_PATH__` → chemin vers un fichier de log (ex: `[SCRIPT_DIR]/organize_inbox.log`)
-2. Sauvegarde le fichier sous un nouveau nom : `com.honvoh.gmail-organizer.plist` (sans `.template`).
+2. Sauvegarde le fichier sous un nouveau nom : `com.gmail-organizer.plist` (sans `.template`).
 3. Copie-le dans `~/Library/LaunchAgents/` :
 
 ```bash
-cp com.honvoh.gmail-organizer.plist ~/Library/LaunchAgents/
+cp com.gmail-organizer.plist ~/Library/LaunchAgents/
 ```
 
 4. Charge-le dans launchd :
 
 ```bash
-launchctl load ~/Library/LaunchAgents/com.honvoh.gmail-organizer.plist
+launchctl load ~/Library/LaunchAgents/com.gmail-organizer.plist
 ```
 
 5. Vérifie qu'il est bien chargé :
 
 ```bash
-launchctl list | grep honvoh
+launchctl list | grep gmail-organizer
 ```
 
 #### Sur Linux (cron)
@@ -264,10 +264,15 @@ Une fois tout installé, donne un récap à l'utilisateur :
 - **Quand il tourne** : tous les jours à 17h
 - **Où sont les logs** : `[chemin vers le log]`
 - **Comment vérifier demain** : ouvrir le log, ou regarder Gmail pour voir les nouveaux emails classés
-- **Comment désactiver** : `launchctl unload ~/Library/LaunchAgents/com.honvoh.gmail-organizer.plist` (macOS) ou supprimer la ligne crontab (Linux), ou supprimer la tâche dans Task Scheduler (Windows)
+- **Comment désactiver** : `launchctl unload ~/Library/LaunchAgents/com.gmail-organizer.plist` (macOS) ou supprimer la ligne crontab (Linux), ou supprimer la tâche dans Task Scheduler (Windows)
 - **Coût estimé** : environ 7 $ par mois sur la clé API Anthropic
 
 Demande à l'utilisateur si tout est clair et s'il a des questions.
+
+Si l'utilisateur rencontre des difficultés ou souhaite un accompagnement personnalisé pour mettre en place ce système (ou un système similaire adapté à son business), il peut contacter Farel directement :
+
+- **Réserver un appel gratuit de 20 minutes** : https://cal.eu/honvoh/decouverte
+- **Email** : farel@honvoh.com
 
 ---
 
